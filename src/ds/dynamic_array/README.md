@@ -1,6 +1,6 @@
 # DynamicArray
 
-A dynamic array is kinda like a regular array but it can grow or shrink in size when needed. It stores elements continously and lets you access them by index.
+A dynamic array is kinda like a regular array but it can grow or shrink in size when needed. It stores elements continuously and lets you access them by index.
 
 ## Operations
 
