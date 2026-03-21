@@ -44,4 +44,30 @@ public class LinkedList{
         size++;
     }
 
+    public void add(int index, int value){
+        if(index < 0 || index > size){
+            throw new IllegalArgumentException("index out of bound");
+        }
+
+        if(index == 0){
+            addFirst(value);
+            return;
+        }
+
+        Node node = new Node(value);
+        Node temp = head;
+
+        for(int i = 0; i < index - 1; i++){
+            temp = temp.next;
+        }
+
+        node.next = temp.next;
+        temp.next = node;
+        size++;
+    }
+
+    public Node getFirst(){
+        return head;
+    }
+
 }
