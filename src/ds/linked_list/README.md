@@ -20,6 +20,12 @@ A linked list is a linear data structure where each element is a node that holds
 | reverse       | O(n)            |
 | clear         | O(1)            |
 
+## Why addFirst and removeFirst are O(1)
+
+`addFirst` and `removeFirst` always operate directly on the head node — no traversal needed, just pointer updates. The size of the list does not matter, it is always one step.
+
+All other adds and removes have to walk through the list first to find the right position, so the time grows with the size of the list, making them O(n).
+
 ## When to use
 
 Use a linked list over a dynamic array when you need frequent insertions and deletions at the front or middle of the list, and do not need random access by index.
