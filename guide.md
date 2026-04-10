@@ -1,43 +1,53 @@
-Here is your Linked List implementation task list:
+Here is your Stack and Queue implementation task list:
 
 ---
 
-1. Create a private inner class `Node` inside `LinkedList.java` with two fields: an int called `data` and a `Node` called `next`, and a constructor that takes an int and sets data to it and next to null.
+1. Create the `Stack` class in `Stack.java` with a private `LinkedList` or raw array as the underlying storage — use an int array called `data`, a private int called `top` initialized to -1, and a private int called `capacity` initialized to 16.
 
-2. Create the `LinkedList` class with a private `Node` called `head` pointing to the first node, and a private int called `size`, both initialized to their zero equivalents.
+2. Write a constructor that initializes `data` as a new int array of size `capacity`.
 
-3. Write a `size()` method that returns size, and an `isEmpty()` method that returns true if size is zero.
+3. Write a `size()` method that returns `top + 1`, and an `isEmpty()` method that returns true if `top` is -1.
 
-4. Write an `addFirst(int value)` method that creates a new node, points its next to the current head, then sets head to the new node, and increments size.
+4. Write a private `resize()` method that doubles the capacity and copies all elements over, same pattern as dynamic array.
 
-5. Write an `addLast(int value)` method that creates a new node, traverses the list to find the last node, points that node's next to the new node, and increments size — handle the case where the list is empty separately.
+5. Write a `push(int value)` method that adds a value to the top of the stack, calling `resize()` if needed, then incrementing `top` and placing the value at `data[top]`.
 
-6. Write an `add(int index, int value)` method that inserts a node at a given index by traversing to the node just before that position, rewiring the next pointers, and throwing an `IndexOutOfBoundsException` for invalid index — reuse `addFirst` if index is zero.
+6. Write a `pop()` method that removes and returns the top element by returning `data[top]` and decrementing `top`, throwing `NoSuchElementException` if the stack is empty.
 
-7. Write a `getFirst()` method that returns the data of the head node, and a `getLast()` method that traverses to the last node and returns its data — both should throw `NoSuchElementException` if the list is empty.
+7. Write a `peek()` method that returns the top element without removing it, throwing `NoSuchElementException` if empty.
 
-8. Write a `get(int index)` method that traverses the list to the given index and returns the data, throwing `IndexOutOfBoundsException` for invalid index.
+8. Write a `clear()` method that resets `top` to -1.
 
-9. Write a `removeFirst()` method that removes the head node by moving head to head.next, decrements size, and throws `NoSuchElementException` if the list is empty.
+9. Write a `toString()` method that prints elements from bottom to top like `[1, 2, 3 <- top]`.
 
-10. Write a `removeLast()` method that traverses to the second to last node, sets its next to null, decrements size, and throws `NoSuchElementException` if the list is empty — handle the single element case separately.
+---
 
-11. Write a `remove(int index)` method that removes the node at the given index by traversing to the node just before it and rewiring next pointers, throwing `IndexOutOfBoundsException` for invalid index — reuse `removeFirst` if index is zero.
+10. Create the `Queue` class in `Queue.java` with a private int array called `data`, a private int `front` initialized to 0, a private int `back` initialized to 0, a private int `size`, and a private int `capacity` initialized to 16.
 
-12. Write a `contains(int value)` method that traverses the full list and returns true if any node holds that value, false otherwise.
+11. Write a constructor that initializes `data` as a new int array of size `capacity`.
 
-13. Write an `indexOf(int value)` method that traverses the list and returns the index of the first node with that value, or -1 if not found.
+12. Write a `size()` method that returns `size`, and an `isEmpty()` method that returns true if size is zero.
 
-14. Write a `reverse()` method that reverses the list in place by rewiring the next pointers of every node without creating any new nodes, updating head to point to what was the last node.
+13. Write a private `resize()` method that doubles capacity, copies elements in correct order starting from `front`, and resets `front` to 0 and `back` to `size` — this is the tricky part, think carefully about the order you copy.
 
-15. Write a `clear()` method that sets head to null and size to zero, releasing all nodes.
+14. Write an `enqueue(int value)` method that adds a value to the back, calling `resize()` if needed, placing the value at `data[back]`, then updating `back` as `(back + 1) % capacity` to wrap around, and incrementing size.
 
-16. Write a `toString()` method that traverses the list and returns a readable string like `[1 -> 2 -> 3 -> null]`.
+15. Write a `dequeue()` method that removes and returns the front element, advancing `front` as `(front + 1) % capacity` to wrap around, decrementing size, and throwing `NoSuchElementException` if empty.
 
-17. Open `Main.java` and write a main method that creates a `LinkedList`, uses addFirst and addLast to add elements, prints the list, gets elements by index, inserts at a specific index, removes first, last, and by index, checks contains and indexOf, calls reverse and prints again — run it and verify every output is correct.
+16. Write a `peek()` method that returns the front element without removing it, throwing `NoSuchElementException` if empty.
 
-18. Go back and test edge cases in `Main.java`: call `removeFirst` on an empty list and verify the exception, call `get` with an out of bounds index, add one element then call `removeLast` and verify the list is empty after, reverse a single element list and verify nothing breaks.
+17. Write a `clear()` method that resets `front`, `back`, and `size` all to zero.
 
-19. Write the `README.md` inside the `linked_list` folder with: two sentences on what a linked list is, a table of all operations with their time complexity, and one sentence on when you would use this over a dynamic array.
+18. Write a `toString()` method that prints elements from front to back like `[1, 2, 3 <- back]`.
 
-20. Commit everything with the message `add linked list implementation`.
+---
+
+19. Open `Main.java` and test Stack first: push 5 elements, print the stack, peek, pop twice, print again, pop until empty and verify exception is thrown.
+
+20. Then test Queue in the same main: enqueue 5 elements, print the queue, peek, dequeue twice, print again, dequeue until empty and verify exception is thrown.
+
+21. Test edge cases: push and immediately pop, enqueue and immediately dequeue, peek on empty stack and empty queue, enqueue enough elements to trigger a resize and verify order is preserved after.
+
+22. Write the `README.md` inside the `stack_queue` folder with: two sentences on what a stack is and two on what a queue is, a table of operations and complexity for both, and one sentence each on when you would use a stack versus a queue.
+
+23. Commit everything with the message `add stack and queue implementation`.
