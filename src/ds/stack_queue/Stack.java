@@ -1,4 +1,6 @@
-package ds.stack
+package ds.stack_queue;
+
+import java.util.NoSuchElementException;
 
 public class Stack{
     private int[] data;
@@ -57,7 +59,7 @@ public class Stack{
         String result="";
         for(int i=0;i<size();i++){
             if(i<size()-1){
-                result+=data[i]+","
+                result+=data[i]+",";
             }else{
                 result+=data[i];
             }
